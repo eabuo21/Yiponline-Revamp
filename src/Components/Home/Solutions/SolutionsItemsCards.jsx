@@ -38,10 +38,21 @@ function Solution() {
   ];
   return (
     <>
-      <div className="items-container">
+      <div className="items-container    md:grid md:grid-cols-2">
         {Cards.map((card, index) => (
-          <div key={index} className="contents-container">
+          <div
+            data-aos="zoom-in"
+            data-aos-easing="ease-in cubic"
+            data-aos-duration="3000"
+            data-aos-mirror="true"
+            data-aos-anchor-placement="top center"
+            data-aos-debounce="true"
+            data-aos-once="true"
+            key={index}
+            className="contents-container"
+          >
             <Solutions
+              
               background={card.background}
               image={card.image}
               heading={card.heading}

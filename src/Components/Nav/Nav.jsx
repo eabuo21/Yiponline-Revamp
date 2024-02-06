@@ -1,23 +1,47 @@
 /** @format */
 
 // Navigation.js
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Fragment, useState } from "react";
 import { Disclosure, Transition } from "@headlessui/react";
 
 const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const navigationLinks = [
-    { name: "Products", to: "/Products" },
+    { name: "Products", to: "/products" },
     { name: "Careers", to: "/Careers" },
     { name: "Contact", to: "/Contact" },
     { name: "JoinUs", to: "/JoinUs" },
   ];
 
   return (
-    <Disclosure as="nav" className="bg-white p-4    ">
+    <Disclosure
+      as="nav"
+      className={`p-4 z-50 sticky ${
+        scrolling
+          ? "bg-gray-800 transition-colors transition-duration-1000  ease-in-out "
+          : "bg-white  "
+      }`}
+    >
       {({ open }) => (
         <>
           <div className="container mx-auto flex items-center justify-between  ">
@@ -42,7 +66,9 @@ const Navigation = () => {
                 <Link
                   key={link.name}
                   to={link.to}
-                  className="text-black hover:text-red font-passion text-xl"
+                  className={`text-black hover:text-blue-700 font-passion text-xl ${
+                    scrolling ? "text-white" : "text-black"
+                  }`}
                 >
                   {link.name}
                 </Link>
@@ -89,13 +115,13 @@ const Navigation = () => {
             <Disclosure.Panel className="lg:hidden bg-white fixed inset-0 z-50 w-auto flex flex-col justify-center items-center gap-4 text-2xl">
               <div className="flex flex-col space-y-4 p-4">
                 {navigationLinks.map((link) => (
-                    <Link
-                        data-aos="flip-right"
-                        data-aos-easing="ease-in cubic"
-                        data-aos-duration="2000"
-                        data-aos-delay="50"
-                        data-aos-anchor-placement="top-bottom"
-                        data
+                  <Link
+                    data-aos="flip-right"
+                    data-aos-easing="ease-in cubic"
+                    data-aos-duration="2000"
+                    data-aos-delay="50"
+                    data-aos-anchor-placement="top-bottom"
+                    data
                     key={link.name}
                     to={link.to}
                     className="text-black hover:text-red font-sans text-3xl "

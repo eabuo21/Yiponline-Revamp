@@ -26,7 +26,17 @@ function Cs() {
     <>
       <div className="flex-items-container  flex flex-col gap-8  md:flex-row md:justify-center md:items-center ">
         {Cards.map((card, index) => (
-          <div key={index} className="items-centered-items">
+          <div
+            data-aos="fade-up"
+            data-aos-easing="ease-in linear"
+            data-aos-duration="2500"
+            data-aos-mirror="true"
+            data-aos-anchor-placement="top right"
+            data-aos-debounce="true"
+            data-aos-once="true"
+            key={index}
+            className="items-centered-items"
+          >
             <Kards
               background={card.background}
               image={card.image}

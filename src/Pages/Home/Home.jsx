@@ -10,30 +10,32 @@ import Cards2 from "../../Components/Home/Solutions/SolutionsItemsCards";
 import Footer from "../../Components/Feat/Footer";
 import Rider from "../../Components/Home/Rider";
 
+
 const Home = () => {
   //set the page t scroll to the top when the component mounts the screen
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [1]);
+  }, []);
   return (
     <>
       <div className="home-container bg-white  h-screen  w-full ">
-        <section className="hero-section   relative pb-9">
+        <section
+          className="hero-section   relative pb-9  bg-gradient-to-br from-blue-400 via-blue-700 to-blue-300  pt-12 ">
           <Hero />
         </section>
 
-        <div className="cards-section pb-6  flex flex-col gap-5  md:grid md:grid-cols-2  md:justify-between   md:items-center md:ml-[7rem]">
+        <div className="cards-section pb-6  pt-16 flex flex-col gap-5  md:grid md:grid-cols-2  md:justify-between   md:items-center md:ml-[7rem]">
           <Arrays />
           <section className="rider-section relative top-16 pb-8 md:ml-[6rem]">
           <Rider />
           </section>
         </div>
 
-        <section className="we-can-help-section  pb-16">
+        <section className="we-can-help-section  pb-16 pt-16">
           <WeCan />
         </section>
 
-        <section className="Solutions-provided-section pt-12 pb-16">
+        <section className="Solutions-provided-section pt-16 pb-16  md:grid md:grid-cols-2 md:grid-reverse ">
           <Solution />
           <Cards2 />
         </section>

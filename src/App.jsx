@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Home from "../src/Pages/Home/Home";
+import Products from "./Pages/Products/Products";
 import Contact from "../src/Pages/Contact/Contact";
 import { RingLoader } from "react-spinners";
 import Head from "../src/Components/Nav/Nav";
@@ -10,7 +11,7 @@ function App() {
   return (
     <>
       <div className="App">
-        <section className="nav-container sticky w-full z-50">
+        <section className="nav-container fixed z-50 w-full ">
           {/*the navigation bar component goes here*/}
           <Head/>
        </section>
@@ -21,6 +22,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products/>}/>
           <Route path='/contact' element={<Contact/>}/>
         </Routes>
 
@@ -28,7 +30,7 @@ function App() {
         {/* here we call the toast container fr our notifications */}
         <ToastContainer/>
 
-       
+    
       </div>
     </>
   );

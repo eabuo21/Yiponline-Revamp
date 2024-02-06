@@ -2,12 +2,21 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
+import HeroImage from "../../Components/Home/HeroImage";
 
 const Hero = () => {
   return (
     <>
       <div
-        className="hero-container  px-7  flex flex-col justify-start items-start p-[4rem] bg-gradient-to-br from-blue-400 via-blue-700 to-blue-300 h-[fixed] w-full
+        data-aos="zoom-in"
+        data-aos-easing="ease-in linear"
+        data-aos-duration="2000"
+        data-aos-anchor-placement="top bottom"
+        data-aos-delay="50"
+        data-aos-mirror="true"
+        data-aos-debounce="true"
+        data-aos-once="true"
+        className="hero-container  px-7  flex flex-col justify-start items-start p-[4rem] h-[fixed] w-full md:flex-row md:gap-12
           
            "
         /*stylings for larger screen  sizes */
@@ -33,12 +42,23 @@ const Hero = () => {
 
           <div className="button-router   ">
             <button className="router  flex flex-row justify-center items-center gap-4  border-2 border-lime-400 p-4 w-[fixed] text-white font-bold font-sans text-xl   ">
-              <Link to="">
+              <Link to="https://powpa.ng/" target="_blank">
                 Get Started Now
                 <span> &rarr; </span>
               </Link>
             </button>
           </div>
+        </section>
+        <section
+        data-aos="fade-up"
+          data-aos-easing="ease-in linear"
+          data-aos-duration="2500"
+          data-aos-delay="50"
+          data-aos-mirror="true"
+          data-aos-anchor-placement="top right"
+          data-aos-debounce="true"
+          className="">
+          <HeroImage/>
         </section>
       </div>
     </>

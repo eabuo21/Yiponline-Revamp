@@ -13,7 +13,7 @@ const SolCards = ({ background, image, heading }) => {
           }}
         >
           <img
-            className="rider-image   w-auto h-auto "
+            className="rider-image   w-auto h-auto    md:w-[250px] md:h-[200px] "
             src={image}
             alt="image"
           />

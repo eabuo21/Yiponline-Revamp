@@ -6,7 +6,16 @@ import { Link } from "react-router-dom";
 const Rider = () => {
   return (
     <>
-      <div className="rider-under-text-section  flex flex-col gap-8 justify-start items-start p-2 px-5  pb-12 pt-4  md:pt-8 ">
+      <div
+        data-aos="zoom-in"
+        data-aos-easing="ease-in linear"
+        data-aos-duration="3000"
+        data-aos-mirror="true"
+        data-aos-anchor-placement="top bottom"
+        data-aos-debounce="true"
+        data-aos-once="true"
+        className="rider-under-text-section  flex flex-col gap-8 justify-start items-start p-2 px-5  pb-12 pt-4  md:pt-8 "
+      >
         <object
           className="objects-container  w-auto h-auto p-2 bg-white  rounded-md shadow-current shadow-md 
             
