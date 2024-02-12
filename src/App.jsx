@@ -1,11 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 import Home from "../src/Pages/Home/Home";
 import Products from "./Pages/Products/Products";
 import Contact from "../src/Pages/Contact/Contact";
 import { RingLoader } from "react-spinners";
 import Head from "../src/Components/Nav/Nav";
-import Footer from "./Components/Feat/Footer";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (

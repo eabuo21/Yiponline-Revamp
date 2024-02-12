@@ -11,7 +11,7 @@ export const showSuccessNotification = (message) => {
     style: {
       marginTop: "4.8rem",
       zIndex: "9999 !important",
-      color: "green",
+      color: "black",
     },
   });
 };

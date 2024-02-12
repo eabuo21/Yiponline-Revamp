@@ -8,48 +8,58 @@ import {
 } from "../Notification/Notify";
 
 const Modal = ({ onClose }) => {
-  const [org, setOrg] = useState(" ");
-  const [email, setEmail] = useState(" ");
-  const [phone, setPhone] = useState(" ");
-  const [contactperson, setContactPerson] = useState(" ");
-  const [service, setService] = useState(" ");
+  const [organization, setOrganization] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [servicerequired, setServiceRequired] = useState("");
   const [loading, setLoading] = useState(false);
 
-  //handle the submit function for the contact Form
+const options = [
+  "Custom Theme Development",
+  "Custom Software Development",
+  "Custom Domain",
+  "Search Functionality",
+  "E-Commerce",
+  "Hospitality",
+];
+
+const DropdownOptions = () => {
+  return options.map((option) => (
+    <option key={option} value={option}>
+      {option}
+    </option>
+  ));
+};
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setLoading(true);
 
-    //email js handles the parameters in the form to be sent t the email address
     const templateParams = {
-      org: org,
-      email: email,
+      organization: organization,
       phone: phone,
-      service: service,
-      contactperson: contactperson,
+      email: email,
+      address: address,
+      servicerequired: servicerequired,
     };
-
     emailjs
-      .send(
-        "service_id",
-        "template_id",
-        templateParams,
-        "api_key".then((Response) => {
-          showSuccessNotification("Request Submitted ");
-          setLoading(false);
-          setOrg("");
-          setPhone("");
-          setContactPerson("");
-          setEmail("");
-          setService("");
-        })
-      )
+      .send("service_id", "template_id", templateParams, "api_key")
+      .then((response) => {
+        showSuccessNotification("request sent");
+        setLoading(false);
+        setOrganization("");
+        setPhone("");
+        setEmail("");
+        setAddress("");
+        setServiceRequired("");
+      })
 
-      .cath((error) => {
-        {
-          setLoading(false);
-          showErrorNotification("failed, please check your connection");
-        }
+      .catch((error) => {
+        showErrorNotification(
+          "request could not send , please check connection"
+        );
+        setLoading(false);
       });
   };
 
@@ -57,7 +67,8 @@ const Modal = ({ onClose }) => {
     <>
       <div className=" main-container  inset-0 z-50 w-full fixed bg-transparent flex flex-col justify-center items-center p-4 px-6">
         <div className="inset-0 bg-black bg-opacity-75 absolute "></div>
-        <div className="form-holder relative">
+
+        <div className="form-holder relative flex flex-col p-4">
           <form
             onSubmit={handleSubmit}
             className="form-container  justify-center items-center p-4 px-6 bg-white rounded-md h-[fixed] w-[50vh]   md:w-[80vh]  flex flex-col gap-8"
@@ -70,79 +81,65 @@ const Modal = ({ onClose }) => {
                 &times;
               </button>
             </div>
-            <input
-              type="text"
-              value={org}
-              placeholder="Name of Organization"
-              onChange={(event) => setOrg(event.target.value)}
-              className="form-field border-2 border-blue-700 rounded-md w-[70%] h-[40px] md:h-[50px]  text-black  md:w-full"
-              
-required            />
 
-            <input
-              type="email"
-              value={email}
-              placeholder="Email Address"
-              onChange={(event) => setEmail(event.target.value)}
-              className="form-field border-2 border-blue-700 rounded-md w-[70%] h-[40px] md:h-[50px]  text-black  md:w-full 
-              "required
-            />
+            <div className="form-elements-container  flex flex-col justify-center items-center p-3 w-full  h-auto gap-6">
+              <input
+                type="text"
+                id="organization"
+                placeholder="Enter Your Organization's Name"
+                value={organization}
+                onChange={(event) => setOrganization(event.target.value)}
+                className="form-input-element w-full mx-3 rounded-md h-[40px] px-6 border border-blue-700 outline-0  border-l-2 border-l-lime-400"
+                required
+              />
+              <input
+                type="tel"
+                id="phonenumber"
+                placeholder="Enter Your Phone Number"
+                value={phone}
+                onChange={(event) => setPhone(event.target.value)}
+                className="form-input-element w-full mx-3 rounded-md h-[40px] px-6 border border-blue-700 outline-0  border-l-2 border-l-lime-400"
+                required
+              />
 
-            <input
-              type="tel"
-              value={phone}
-              placeholder="Phone Number "
-              onChange={(event) => setPhone(event.target.value)}
-              className="form-field border-2 border-blue-700 rounded-md w-[70%] h-[40px] md:h-[50px]  text-black  md:w-full 
-              "required
-            />
+              <input
+                type="email"
+                id="emailaddress"
+                placeholder="Enter Your  Email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                className="form-input-element w-full mx-3 rounded-md h-[40px] px-6 border border-blue-700 outline-0  border-l-2 border-l-lime-400"
+                required
+              />
+              <input
+                type="text"
+                id="address"
+                placeholder="Enter Your Address"
+                value={address}
+                onChange={(event) => setAddress(event.target.value)}
+                className="form-input-element w-full mx-3 rounded-md h-[40px] px-6 border border-blue-700 outline-0  border-l-2 border-l-lime-400"
+                required
+              />
 
-            <input
-              type="text"
-              value={contactperson}
-              placeholder="Contact  Person"
-              onChange={(event) => setContactPerson(event.target.value)}
-              className="form-field border-2 border-blue-700 rounded-md w-[70%] h-[40px] md:h-[50px]  text-black  md:w-full 
-              "required
-            />
+              <select
+                type="dropdown"
+                id="servicerequired"
+                value={servicerequired}
+                onChange={(event) => setServiceRequired(event.target.value)}
+                className="form-input-element w-full mx-3 rounded-md h-[40px] px-6 border border-blue-700 outline-0 border-l-2 border-l-lime-400"
+                required
+              >
+                <option disabled>Service Required</option>
+                <DropdownOptions />
+              </select>
 
-            <select
-              type="dropdown"
-              value={service}
-              onChange={(event) => setService(event.target.value)}
-              className="form-field border-2 border-blue-700 rounded-md w-[70%] h-[40px] md:h-[50px]  text-black  md:w-full 
-              "required
-            >
-              <option value=" " disabled>
-                {" "}
-                Service Required{" "}
-              </option>
-              <option value="custom software Development">
-                {" "}
-                Custom Softare Development
-              </option>
-              <option value="website  development ">
-                {" "}
-                website Development{" "}
-              </option>
-              <option value="E-commerce website development ">
-                {" "}
-                E-commerce website development
-              </option>
-              <option value="Hospitality"> Hospitality </option>
-              <option value="Search Functionality ">
-                {" "}
-                Search Search functionality{" "}
-              </option>
-              <option value="Responsive themes"> Responsive Themes </option>
-              <option value="Custom Domain"> Custom Domain </option>
-            </select>
-
-            <section className="submit-button-section flex flex-col justify-center items-center mx-auto">
-              <button className="submit-button bg-blue-700 p-4 w-[100px] h-[50px] text-white ">
+              <button
+                type="submit"
+                className="submit-button bg-blue-700 p-4 w-[100px] h-[50px] text-white "
+              >
                 {loading ? <b> submitting....</b> : <b> Submit </b>}
               </button>
-            </section>
+            </div>
           </form>
         </div>
       </div>
